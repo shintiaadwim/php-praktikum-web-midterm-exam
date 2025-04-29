@@ -1,10 +1,18 @@
 <?php
+    session_start();
+    
+    if (!isset($_SESSION['user_login']) !== true) {
+        header("Location: http://localhost/pweb/login.php");
+        exit();
+    }
+    
     include 'connection/koneksi.php';
 
     $sql = "SELECT * FROM siswa ORDER BY nrp";
     $result = mysqli_query($conn, $sql);
 
     mysqli_close($conn);
+
 ?>
 
 <!doctype html>

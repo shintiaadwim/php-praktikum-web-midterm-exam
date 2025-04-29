@@ -18,7 +18,7 @@
                     <span class="sr-only">Close modal</span>
                 </button>
             </div>
-            <!-- Modal body -->ee
+            <!-- Modal body -->
             <form action="process/add.php" method="post" class="p-4 md:p-5">
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">

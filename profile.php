@@ -1,20 +1,14 @@
 <?php
-    include "connection/koneksi.php";
-
     session_start();
-    $pageTitle = "User Profile";
-    if (!isset($_SESSION['userid'])) {
-        header("Location: http://localhost/pweb/login.php");
-        exit();
-    }
-
+    include "connection/koneksi.php";
+    
     $userid = $_SESSION['userid'];
-
-    $sql = mysqli_query($conn, "SELECT * FROM users WHERE userid = $userid");
-    $data = mysqli_fetch_array($sql);
+    $query = mysqli_query($conn, "SELECT * FROM users WHERE userid = '$userid'");
+    $row = mysqli_fetch_assoc($query);
 ?>
 
 <?php 
+    $pageTitle = "User Profile";
     include 'cdn.php';
     include 'layouts/header.php';
     include 'layouts/sidebar.php';

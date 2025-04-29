@@ -1,12 +1,11 @@
 <?php 
     $pageTitle = "Login";
     include 'cdn.php';
-    // include 'process/in.php';
 ?>
 
 <div class="p-4 flex items-center justify-center h-screen bg-blue-200">
     <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
-        <form class="space-y-6" action="process/in.php" method="post">
+        <form class="space-y-6" action="process/in.php" method="POST">
             <h5 class="text-xl font-medium text-gray-900 dark:text-white">Sign in to our platform</h5>
             <div>
                 <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>

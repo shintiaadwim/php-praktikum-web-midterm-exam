@@ -10,10 +10,14 @@
         $result = mysqli_query($conn,$sql);
 
         if (mysqli_num_rows($result) == 1) {
-
-        $_SESSION['user_login'] = true;
+            $_SESSION['user_login'] = true;
             header("Location: http://localhost/pweb/home.php");
             exit();
         } 
+        
+        // else {
+        //     header("Location: http://localhost/pweb/login.php?error=1");
+        //     exit();
+        // }
     }
 ?>

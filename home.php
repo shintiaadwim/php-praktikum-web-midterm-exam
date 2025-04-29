@@ -1,7 +1,7 @@
 <?php
     session_start();
     
-    if (!isset($_SESSION['user_login']) !== true) {
+    if (!isset($_SESSION['user_login']) || $_SESSION['user_login'] !== true) {
         header("Location: http://localhost/pweb/login.php");
         exit();
     }
@@ -12,7 +12,6 @@
     $result = mysqli_query($conn, $sql);
 
     mysqli_close($conn);
-
 ?>
 
 <!doctype html>

@@ -1,10 +1,10 @@
 <?php
     session_start();
     
-    // if (!isset($_SESSION['user_login'])  || $_SESSION['user_login'] !== true) {
-    //     header("Location: http://localhost/pweb/login.php");
-    //     exit();
-    // }
+    if (!isset($_SESSION['user_login'])  || $_SESSION['user_login'] !== true) {
+        header("Location: http://localhost/pweb/login.php");
+        exit();
+    }
     
     include 'connection/koneksi.php';
 

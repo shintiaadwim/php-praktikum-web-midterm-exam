@@ -10,9 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $address = $_POST['address'];
     $username = $_POST['username'];
     $pass = $_POST['pass'];
+    $profile = $_POST['profile'];
 
-    $sql = "INSERT INTO users (nrp, name, email, place, birth, address, username, pass)
-            VALUES ('$nrp', '$name', '$email', '$place', '$birth', '$address', '$username', '$pass')";
+    $md5_pass = md5($pass);
+
+    $sql = "INSERT INTO users (nrp, name, email, place, birth, address, username, pass, profile)
+            VALUES ('$nrp', '$name', '$email', '$place', '$birth', '$address', '$username', '$md5_pass', '$profile')";
 
     if (mysqli_query($conn, $sql)) {
         header("Location: http://localhost/pweb/login.php");

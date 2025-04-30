@@ -1,10 +1,10 @@
 <?php
-    session_start();
     include "connection/koneksi.php";
-    
-    $userid = $_SESSION['userid'];
-    $query = mysqli_query($conn, "SELECT * FROM users WHERE userid = '$userid'");
-    $row = mysqli_fetch_assoc($query);
+    session_start();
+
+    $userid = $_SESSION['userid']; 
+    $sql = mysqli_query($conn, "SELECT * FROM users WHERE username = '$userid'");
+    $data = mysqli_fetch_array($sql);
 ?>
 
 <?php 
@@ -41,11 +41,11 @@
             </div>
 
             <div class="flex flex-col items-center pb-10">
-                <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="img/<?= $data['fotoprofil'] ?>" />
-                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><?php echo $row['nrp']; ?></h5>
-                <span class="text-sm text-gray-500 dark:text-gray-400"><?php echo $row['name']; ?></span>
-                <span class="text-sm text-gray-500 dark:text-gray-400"><?php echo $row['email']; ?></span>
-                <span class="text-sm text-gray-500 dark:text-gray-400"><?php echo $row['place']; ?><?php echo $row['birth']; ?></span>
+                <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="img/profile/<?= $data['profile'] ?>" />
+                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><?= $data['nrp']; ?></h5>
+                <span class="text-sm text-gray-500 dark:text-gray-400"><?= $data['name']; ?></span>
+                <span class="text-sm text-gray-500 dark:text-gray-400"><?= $data['email']; ?></span>
+                <span class="text-sm text-gray-500 dark:text-gray-400"><?= $data['place']; ?><?= $data['birth']; ?></span>
             </div>
         </div>
     </div>

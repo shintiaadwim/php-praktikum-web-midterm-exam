@@ -6,19 +6,15 @@
         $userid = $_POST['userid'];
         $pass = $_POST['pass'];
 
-        $sql = "SELECT * FROM users WHERE userid = '$userid' AND pass ='$pass'";
+        $md5_pass = md5($pass);
+
+        $sql = "SELECT * FROM users WHERE username = '$userid' AND pass ='$md5_pass'";
 
         $result = mysqli_query($conn,$sql);
-
         if (mysqli_num_rows($result) == 1) {
             $_SESSION['user_login'] = true;
-            header("Location: ../index.php");
-            exit();
+            $_SESSION['userid'] = $userid;
+            header("Location: http://localhost/pweb/home.php");
         } 
-        
-        // else {
-        //     header("Location: http://localhost/pweb/login.php?error=1");
-        //     exit(); 
-        // } 
     }
 ?>

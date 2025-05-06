@@ -3,8 +3,6 @@
 
     $sql = "SELECT * FROM siswa ORDER BY nrp";
     $result = mysqli_query($conn, $sql);
-
-    mysqli_close($conn);
 ?>
 
 <?php 
@@ -50,14 +48,16 @@
                         <th scope="col" class="px-6 py-3">Age</th>
                         <th scope="col" class="px-6 py-3">Gender</th>
                         <th scope="col" class="px-6 py-3">Address</th>
+                        <th scope="col" class="px-6 py-3">Upload</th>
                         <th scope="col" class="px-6 py-3">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                if (mysqli_num_rows($result) > 0) {
+                if (mysqli_num_rows($result)>0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                ?>
+                        $id = $row["id"];
+                    ?>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <!-- <td class="px-6 py-4 font-medium text-gray-900 dark:text-white"><?php echo $row["id"]; ?></td> -->
                         <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row["nrp"]; ?></td>
@@ -65,9 +65,24 @@
                         <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row["age"]; ?></td>
                         <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row["gender"]; ?></td>
                         <td class="px-6 py-4 font-medium text-gray-500 dark:text-white"><?php echo $row["address"]; ?></td>
+                        <td class="px-6 py-4 font-medium text-gray-500 dark:text-white">
+                        <?php
+                                $uploadQuery = "SELECT * FROM upload WHERE siswaid = '$id' LIMIT 1";
+                                $uploadResult = mysqli_query($conn, $uploadQuery);
+                                if ($uploadRow = mysqli_fetch_assoc($uploadResult)) {
+                                    echo "<img src='" . $uploadRow['path'] . "' alt='Foto Profil' class='w-16 h-16 object-cover'>";
+                                } 
+                            ?>
+                        </td>
                         <td class="flex items-center px-6 py-4">
                             <a href="update.php?id=<?php echo $row["id"]; ?>" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Update</a>
                             <a href="process/remove.php?id=<?php echo $row["id"]; ?>" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Delete</a>
+                            <?php
+                                $Downloadsql = "SELECT * FROM upload WHERE siswaid = '$id' ";
+                                $Downloadresult = mysqli_query($conn, $Downloadsql);
+                                while($file = mysqli_fetch_array($Downloadresult))
+                                    echo "<a href='" . $file['path'] . "' download='IMG_{$row['nrp']}.jpg' class='font-medium text-green-600 dark:text-green-500 hover:underline ms-3'>Download</a>";
+                            ?>
                         </td>
                     </tr>
                 <?php

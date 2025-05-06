@@ -19,7 +19,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="process/add.php" method="post" class="p-4 md:p-5">
+            <form action="process/add.php" method="POST" enctype="multipart/form-data" class="p-4 md:p-5">
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
                         <label for="nrp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NRP</label>
@@ -47,6 +47,12 @@
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
+                    </div>
+                    <div class="col-span-2">
+                        <label for="upload-foto" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Picture</label>
+                        <input type="file" name="userfile" id="upload-foto"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="No file chosen" required>
                     </div>
                     <div class="col-span-2">
                         <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
